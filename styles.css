@@ -1,0 +1,343 @@
+/* ==========================================================================
+   Pomodoro Focus Timer — Clean Minimalist Dark Mode
+   ========================================================================== */
+
+:root {
+  /* Base palette */
+  --bg: #0f1115;
+  --bg-elevated: #171a21;
+  --surface: #1d212b;
+  --border: #2a2f3a;
+
+  /* Text */
+  --text-primary: #e8eaf0;
+  --text-secondary: #8b93a3;
+  --text-muted: #5b6270;
+
+  /* Accent (work mode) */
+  --accent: #ff6b6b;
+  --accent-soft: rgba(255, 107, 107, 0.14);
+
+  /* Break mode accent */
+  --accent-break: #4ecdc4;
+  --accent-break-soft: rgba(78, 205, 196, 0.14);
+
+  /* Shared */
+  --radius: 16px;
+  --radius-lg: 28px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  background: radial-gradient(1200px 800px at 50% -10%, #1a1f2b 0%, var(--bg) 60%);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.6s ease;
+}
+
+/* Break mode tints the page background subtly */
+body.is-break {
+  background: radial-gradient(1200px 800px at 50% -10%, #14211f 0%, var(--bg) 60%);
+}
+
+/* --------------------------------------------------------------------------
+   Layout
+   -------------------------------------------------------------------------- */
+.app {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+.app-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.app-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.app-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   Mode switch
+   -------------------------------------------------------------------------- */
+.mode-switch {
+  display: inline-flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.mode-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.mode-btn:hover {
+  color: var(--text-primary);
+}
+
+.mode-btn.is-active {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+body.is-break .mode-btn.is-active {
+  background: var(--accent-break-soft);
+  color: var(--accent-break);
+}
+
+/* --------------------------------------------------------------------------
+   Timer ring + display
+   -------------------------------------------------------------------------- */
+.timer-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.timer-ring {
+  position: relative;
+  width: 260px;
+  height: 260px;
+}
+
+.ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ring-track,
+.ring-progress {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.ring-track {
+  stroke: var(--surface);
+}
+
+.ring-progress {
+  stroke: var(--accent);
+  stroke-dasharray: 754; /* circumference: 2 * PI * 120 */
+  stroke-dashoffset: 0;
+  transition: stroke var(--transition), stroke-dashoffset 0.5s linear;
+}
+
+body.is-break .ring-progress {
+  stroke: var(--accent-break);
+}
+
+.timer-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.timer-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: color var(--transition);
+}
+
+body.is-break .timer-label {
+  color: var(--accent-break);
+}
+
+.timer-display {
+  font-size: 3.6rem;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Controls
+   -------------------------------------------------------------------------- */
+.controls {
+  display: flex;
+  gap: 14px;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 14px 26px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow var(--transition),
+    background var(--transition), color var(--transition);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #1a0f0f;
+  min-width: 150px;
+  box-shadow: 0 8px 24px var(--accent-soft);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+body.is-break .btn-primary {
+  background: var(--accent-break);
+  color: #0c1a18;
+  box-shadow: 0 8px 24px var(--accent-break-soft);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+}
+
+.btn-icon {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Session footer
+   -------------------------------------------------------------------------- */
+.session-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.session-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.session-dots {
+  display: flex;
+  gap: 8px;
+  min-height: 10px;
+}
+
+.session-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.session-dots .dot.filled {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+body.is-break .session-dots .dot.filled {
+  background: var(--accent-break);
+  border-color: var(--accent-break);
+}
+
+.session-count {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 380px) {
+  .timer-ring {
+    width: 220px;
+    height: 220px;
+  }
+
+  .timer-display {
+    font-size: 3rem;
+  }
+
+  .btn {
+    padding: 12px 18px;
+  }
+}

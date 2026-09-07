@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agentic AI Onboarding Guide for Windows | Team Manual</title>
+  <meta name="description" content="Step-by-step onboarding guide for Windows users to set up Visual Studio Code, Roo Code, and DeepSeek for agentic AI coding." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --bg-card: #111827;
+      --bg-card-hover: #172033;
+      --bg-subtle: #1e293b;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(59, 130, 246, 0.3);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.2);
+      --success: #10b981;
+      --success-glow: rgba(16, 185, 129, 0.15);
+      --warning: #f59e0b;
+      --warning-glow: rgba(245, 158, 11, 0.15);
+      --purple: #8b5cf6;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --bg-subtle: #e2e8f0;
+      --border: rgba(0, 0, 0, 0.08);
+      --border-accent: rgba(59, 130, 246, 0.3);
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --primary: #2563eb;
+      --primary-glow: rgba(37, 99, 235, 0.15);
+      --success: #059669;
+      --success-glow: rgba(5, 150, 105, 0.15);
+      --warning: #d97706;
+      --warning-glow: rgba(217, 119, 6, 0.15);
+      --purple: #7c3aed;
+      --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header.top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background-color: rgba(9, 13, 22, 0.8);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+    }
+
+    [data-theme="light"] header.top-nav {
+      background-color: rgba(248, 250, 252, 0.85);
+    }
+
+    .nav-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, var(--primary), var(--purple));
+      color: white;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .theme-toggle, .btn-print {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+
+    .theme-toggle:hover, .btn-print:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--primary);
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 6rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 2rem 0 3.5rem;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary-glow);
+      border: 1px solid var(--border-accent);
+      color: var(--primary);
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 2rem;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .spec-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      text-align: left;
+    }
+
+    .spec-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .spec-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 0.25rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 3.5rem 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 1.75rem;
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    [data-theme="light"] .card:hover {
+      border-color: rgba(0, 0, 0, 0.15);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .checklist-box {
+      background: var(--bg-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      border-left: 4px solid var(--primary);
+    }
+
+    .checklist-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin: 0.4rem 0;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .check-item input[type="checkbox"] {
+      margin-top: 0.25rem;
+      accent-color: var(--primary);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .alert {
+      border-radius: var(--radius-md);
+      padding: 1.15rem 1.25rem;
+      margin: 1.25rem 0;
+      display: flex;
+      gap: 0.9rem;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .alert-warning {
+      background: var(--warning-glow);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
+    }
+
+    [data-theme="light"] .alert-warning {
+      color: #b45309;
+      background: #fffbeb;
+      border-color: #fde68a;
+    }
+
+    .alert-info {
+      background: var(--primary-glow);
+      border: 1px solid var(--border-accent);
+      color: #93c5fd;
+    }
+
+    [data-theme="light"] .alert-info {
+      color: #1d4ed8;
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+
+    .alert-icon {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      filter: brightness(1.15);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-subtle);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--primary);
+    }
+
+    .code-block {
+      background: #020617;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin: 1rem 0;
+      overflow: hidden;
+    }
+
+    [data-theme="light"] .code-block {
+      background: #0f172a;
+      color: #f8fafc;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: #94a3b8;
+    }
+
+    .code-content {
+      padding: 1rem 1.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      color: #e2e8f0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .btn-copy {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f8fafc;
+      padding: 0.3rem 0.65rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s;
+    }
+
+    .btn-copy:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .btn-copy.copied {
+      background: var(--success);
+      color: white;
+      border-color: var(--success);
+    }
+
+    kbd {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-bottom: 2px solid var(--border);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .faq-search-wrapper {
+      margin-bottom: 1.5rem;
+    }
+
+    .faq-search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1.25rem;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .faq-search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .faq-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    details.faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    details.faq-item[open] {
+      border-color: var(--border-accent);
+      background: var(--bg-card-hover);
+    }
+
+    details.faq-item summary {
+      padding: 1.15rem 1.25rem;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    details.faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-chevron {
+      transition: transform 0.2s ease;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+
+    details.faq-item[open] .faq-chevron {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .faq-body {
+      padding: 0 1.25rem 1.25rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 1rem;
+    }
+
+    .faq-body ol, .faq-body ul {
+      margin-left: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .faq-body li {
+      margin-bottom: 0.35rem;
+    }
+
+    footer.site-footer {
+      text-align: center;
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 0.875rem;
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      header.top-nav, .theme-toggle, .btn-print, .btn-copy, .faq-search-wrapper { display: none; }
+      .card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+      details.faq-item { border: 1px solid #ccc; }
+      details.faq-item[open] { background: none; }
+      .faq-body { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="top-nav">
+    <div class="nav-container">
+      <div class="brand">
+        <span class="brand-badge">Guide</span>
+        <span>Windows AI Onboarding</span>
+      </div>
+      <div class="nav-controls">
+        <button class="btn-print" onclick="window.print()" title="Print or Save as PDF">
+          🖨️ <span>PDF / Print</span>
+        </button>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Light/Dark Mode">
+          🌙 <span id="themeText">Dark</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- Hero Header -->
+    <section class="hero">
+      <div class="hero-pill">⚡ 10-Minute Team Setup</div>
+      <h1>Agentic AI Coding on <span class="gradient-text">Windows</span></h1>
+      <p>
+        Get a full autonomous AI coding harness (equivalent to Google Antigravity or Cursor Pro) running in Visual Studio Code for pennies a day. No Docker required.
+      </p>
+
+      <div class="specs-grid">
+        <div class="spec-card">
+          <div class="spec-label">Target OS</div>
+          <div class="spec-value">Windows 10 / 11</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">IDE & Extension</div>
+          <div class="spec-value">VS Code + Roo Code</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">AI Engine</div>
+          <div class="spec-value">DeepSeek V3 / R1</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Avg Daily Cost</div>
+          <div class="spec-value">~$0.15 / developer</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Phase 1: Prerequisites -->
+    <h2 class="section-title">
+      <span class="step-badge">1</span> Phase 1: Software Installation
+    </h2>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Step 1: Install Visual Studio Code</div>
+      </div>
+      <p>Download and run the official 64-bit installer for Windows.</p>
+
+      <div class="checklist-box">
+        <div class="checklist-title">⚠️ CRITICAL INSTALLER OPTIONS:</div>
+        <p style="font-size:0.88rem; margin-bottom:0.6rem; color:var(--text-muted)">
+          When you reach the <strong>"Select Additional Tasks"</strong> screen, you MUST check these three boxes:
+        </p>
+        <label class="check-item">
+          <input type="checkbox" checked disabled>
+          <span><strong>Add to PATH</strong> (ensures the <code>code</code> command works in terminal)</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" checked disabled>
+          <span><strong>Add "Open with Code" to Windows Explorer directory context menu</strong></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" checked disabled>
+          <span><strong>Add "Open with Code" to Windows Explorer file context menu</strong></span>
+        </label>
+      </div>
+
+      <a href="https://code.visualstudio.com/" target="_blank" rel="noopener" class="btn">
+        📥 Download VS Code for Windows
+      </a>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Step 2: Install Git for Windows (Essential)</div>
+      </div>
+      <p>
+        AI agents run terminal commands to test and build software. Windows default command lines (CMD/PowerShell) often fail with AI syntax. Git provides <strong>Git Bash</strong>, which guarantees seamless execution.
+      </p>
+
+      <ol style="margin-left:1.5rem; color:var(--text-muted); margin-bottom:1.25rem;">
+        <li>Download the 64-bit Git for Windows installer.</li>
+        <li>Click <strong>Next</strong> through the setup prompts (the default selections are recommended).</li>
+        <li>Click <strong>Install</strong>.</li>
+      </ol>
+
+      <a href="https://git-scm.com/download/win" target="_blank" rel="noopener" class="btn btn-secondary">
+        📥 Download Git for Windows
+      </a>
+    </div>
+
+    <!-- Phase 2: Configuration -->
+    <h2 class="section-title">
+      <span class="step-badge">2</span> Phase 2: One-Time Configuration
+    </h2>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Step 3: Set Git Bash as Default Terminal</div>
+      </div>
+      <p>Configure VS Code to use Git Bash by default so the agent doesn't run into PowerShell permission errors.</p>
+
+      <ol style="margin-left:1.5rem; color:var(--text-muted); margin-bottom:1rem;">
+        <li>Open <strong>Visual Studio Code</strong>.</li>
+        <li>Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> to open the Command Palette.</li>
+        <li>Type: <code>Terminal: Select Default Profile</code> and hit <kbd>Enter</kbd>.</li>
+        <li>Select <strong>Git Bash</strong> from the list.</li>
+      </ol>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span>Command Palette Input</span>
+          <button class="btn-copy" onclick="copyText(this, 'Terminal: Select Default Profile')">📋 Copy</button>
+        </div>
+        <div class="code-content">Terminal: Select Default Profile</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Step 4: Install the Roo Code Extension</div>
+      </div>
+      <p>Roo Code is the autonomous coding harness that executes tasks, reads repos, and applies diffs.</p>
+
+      <ol style="margin-left:1.5rem; color:var(--text-muted); margin-bottom:1rem;">
+        <li>In VS Code, open the Extensions tab on the left sidebar (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd>).</li>
+        <li>Search for: <code>Roo Code</code>.</li>
+        <li>Click <strong>Install</strong> on the extension by <em>RooVeterinaryInc</em>.</li>
+        <li>You will see a kangaroo icon appear on the far-left activity bar.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Step 5: Connect Your DeepSeek API Key</div>
+      </div>
+      <p>Set up the API connection to DeepSeek’s fast and cost-effective coding models.</p>
+
+      <ol style="margin-left:1.5rem; color:var(--text-muted); margin-bottom:1rem;">
+        <li>Click the <strong>Roo Code (Kangaroo)</strong> icon on the left sidebar.</li>
+        <li>Click the <strong>Settings gear icon (⚙️)</strong> at the top of the Roo Code panel.</li>
+        <li>Configure the following values:</li>
+      </ol>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span>Recommended Configuration</span>
+        </div>
+        <div class="code-content">• API Provider: DeepSeek
+• API Key: [Paste your key starting with sk-]
+• Model: deepseek-chat (Fast & ultra-cheap for daily coding)
+• (Optional) Model: deepseek-reasoner (DeepSeek-R1 for complex planning)</div>
+      </div>
+
+      <div class="alert alert-info">
+        <span class="alert-icon">💡</span>
+        <div>
+          <strong>Prepaid Balance Note:</strong> DeepSeek requires a small prepaid balance. Adding \$2.00 to \$5.00 on <a href="https://platform.deepseek.com" target="_blank" style="color:inherit; text-decoration:underline;">platform.deepseek.com</a> is typically enough to fund weeks of AI pair-programming.
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 3: First Project -->
+    <h2 class="section-title">
+      <span class="step-badge">3</span> Phase 3: Your "Hello World" Project
+    </h2>
+
+    <div class="card">
+      <div class="alert alert-warning">
+        <span class="alert-icon">🛑</span>
+        <div>
+          <strong>The Golden Rule of AI Agents:</strong><br>
+          Always open a project folder first! An AI coding agent cannot create files or track Git checkpoints if VS Code is opened on an empty/unsaved window.
+        </div>
+      </div>
+
+      <div class="card-title" style="margin-top:1.5rem; margin-bottom:0.75rem;">Step 6: Create & Open a Folder</div>
+      <ol style="margin-left:1.5rem; color:var(--text-muted); margin-bottom:1.25rem;">
+        <li>Create a new empty folder anywhere on your computer (e.g., on your Desktop named <code>ai-hello-world</code>).</li>
+        <li>In VS Code, click <strong>File</strong> $\rightarrow$ <strong>Open Folder...</strong></li>
+        <li>Select your <code>ai-hello-world</code> folder.</li>
+        <li>If prompted with <em>"Do you trust the authors of the files in this folder?"</em>, click <strong>Yes, I trust the authors</strong>.</li>
+      </ol>
+
+      <div class="card-title" style="margin-top:1.5rem; margin-bottom:0.75rem;">Step 7: Prompt the Agent</div>
+      <ol style="margin-left:1.5rem; color:var(--text-muted); margin-bottom:1rem;">
+        <li>Click the Roo Code (Kangaroo) icon on the left sidebar.</li>
+        <li>Set the mode dropdown at the bottom to <strong>Code</strong>.</li>
+        <li>Copy and paste the test prompt below into the chat:</li>
+      </ol>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span>Test Prompt (Click Copy)</span>
+          <button class="btn-copy" onclick="copyText(this, 'Create a clean, interactive \'Hello World\' web app in this workspace with HTML, CSS, and JavaScript. Include a dark mode card, an animated greeting, a button that changes colors and counts clicks, and a live digital clock.')">📋 Copy Prompt</button>
+        </div>
+        <div class="code-content">Create a clean, interactive 'Hello World' web app in this workspace with HTML, CSS, and JavaScript. Include a dark mode card, an animated greeting, a button that changes colors and counts clicks, and a live digital clock.</div>
+      </div>
+
+      <div class="card-title" style="margin-top:1.5rem; margin-bottom:0.75rem;">Step 8: Approve & Run</div>
+      <p>
+        Watch Roo Code analyze the request and write the files. Review the proposed code diffs and click the green <strong>Approve</strong> button. When completed, right-click <code>index.html</code> in your file list and choose <strong>Reveal in File Explorer</strong>, then double-click to view your running app in the browser!
+      </p>
+    </div>
+
+    <!-- Phase 4: FAQs -->
+    <h2 class="section-title">
+      <span class="step-badge">?</span> Troubleshooting & FAQs
+    </h2>
+
+    <div class="faq-search-wrapper">
+      <input type="text" id="faqSearch" class="faq-search-input" placeholder="🔍 Search FAQs (e.g., ripgrep, API key, checkpoints, balance)..." />
+    </div>
+
+    <div class="faq-group" id="faqGroup">
+
+      <details class="faq-item" name="faq">
+        <summary>
+          <span>Error: "Could not find ripgrep binary" or agent freezes on start</span>
+          <span class="faq-chevron">▼</span>
+        </summary>
+        <div class="faq-body">
+          <p><strong>Cause:</strong> VS Code recently relocated its internal search binary, or the terminal environment wasn't reloaded after installation.</p>
+          <p><strong>Fix:</strong></p>
+          <ol>
+            <li>Close Visual Studio Code completely.</li>
+            <li>Reopen VS Code from your Windows Start Menu.</li>
+            <li>Open your project folder (<kbd>File</kbd> $\rightarrow$ <kbd>Open Folder...</kbd>).</li>
+            <li>Click the <strong><code>+</code> (New Task)</strong> button at the top of the Roo Code panel to start clean.</li>
+          </ol>
+        </div>
+      </details>
+
+      <details class="faq-item" name="faq">
+        <summary>
+          <span>Error: "No existing API conversation history" or resume task fails</span>
+          <span class="faq-chevron">▼</span>
+        </summary>
+        <div class="faq-body">
+          <p><strong>Cause:</strong> If a task was interrupted or failed before sending its first message, there is no conversation history on disk to resume.</p>
+          <p><strong>Fix:</strong> Never click "Resume Task" on a broken/aborted task. Always click the <strong><code>+</code> (New Task)</strong> icon at the top of Roo Code to start fresh.</p>
+        </div>
+      </details>
+
+      <details class="faq-item" name="faq">
+        <summary>
+          <span>Error: "Authentication Fails" or Invalid API Key</span>
+          <span class="faq-chevron">▼</span>
+        </summary>
+        <div class="faq-body">
+          <p><strong>Fix:</strong></p>
+          <ol>
+            <li>Click the <strong>Settings (⚙️)</strong> icon at the top of the Roo Code panel.</li>
+            <li>Clear the API key field completely.</li>
+            <li>Copy your DeepSeek key directly from <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a>.</li>
+            <li>Paste it back in, ensuring there are <strong>no accidental spaces</strong> before or after the key.</li>
+            <li>Ensure the key begins with <code>sk-</code>.</li>
+          </ol>
+        </div>
+      </details>
+
+      <details class="faq-item" name="faq">
+        <summary>
+          <span>Error: "Insufficient Balance" (HTTP 402)</span>
+          <span class="faq-chevron">▼</span>
+        </summary>
+        <div class="faq-body">
+          <p><strong>Cause:</strong> The DeepSeek API is prepaid. If your balance is \$0.00, it cannot generate completions.</p>
+          <p><strong>Fix:</strong> Log in to <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a> $\rightarrow$ Top up $\rightarrow$ add \$2 to \$5. DeepSeek is extremely cheap, and a small deposit typically lasts for weeks of heavy development.</p>
+        </div>
+      </details>
+
+      <details class="faq-item" name="faq">
+        <summary>
+          <span>What is the difference between "Architect Mode" and "Code Mode"?</span>
+          <span class="faq-chevron">▼</span>
+        </summary>
+        <div class="faq-body">
+          <p><strong>Architect Mode (Planning):</strong> The AI reads your files, investigates dependencies, and creates an implementation plan <em>without touching your code</em>. Use this when planning a new feature or refactoring.</p>
+          <p><strong>Code Mode (Execution):</strong> The AI writes code, creates files, and runs terminal commands. Use this when you are ready to build.</p>
+          <p>💡 <em>Best Practice:</em> Start complex requests in Architect Mode first, review the plan, and then switch to Code Mode to implement it.</p>
+        </div>
+      </details>
+
+      <details class="faq-item" name="faq">
+        <summary>
+          <span>How do I undo a change if the AI breaks something?</span>
+          <span class="faq-chevron">▼</span>
+        </summary>
+        <div class="faq-body">
+          <p>Roo Code automatically creates a shadow Git checkpoint before every action.</p>
+          <p>To undo: Look at the bottom of the task conversation in the Roo Code panel. You will see checkpoint timestamps (e.g. <em>"Checkpoint created 2m ago"</em>). Click the checkpoint button to restore your project files back to that exact second.</p>
+        </div>
+      </details>
+
+      <details class="faq-item" name="faq">
+        <summary>
+          <span>How do I enable auto-approvals so I don't have to click "Approve" for every file?</span>
+          <span class="faq-chevron">▼</span>
+        </summary>
+        <div class="faq-body">
+          <p>In Roo Code Settings (⚙️), scroll down to <strong>Auto-Approval Settings</strong>:</p>
+          <ul>
+            <li>☑️ <strong>Always approve read-only operations</strong> (Safe — reading files, searching code)</li>
+            <li>☑️ <strong>Always approve file writes</strong> (Convenient — automatically applies edits)</li>
+            <li>⚠️ <em>Keep "Execute terminal commands" manual</em> until you are familiar with the tool.</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Agentic AI Coding Team Onboarding Manual • Built for Windows Developers</p>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const themeText = document.getElementById('themeText');
+    
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      themeText.textContent = theme === 'light' ? 'Light' : 'Dark';
+      themeToggle.innerHTML = theme === 'light' ? '☀️ <span>Light</span>' : '🌙 <span>Dark</span>';
+    }
+
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    setTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      setTheme(current === 'light' ? 'dark' : 'light');
+    });
+
+    function copyText(btn, text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✓ Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    const faqSearch = document.getElementById('faqSearch');
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqSearch.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      faqItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(query)) {
+          item.style.display = 'block';
+          if (query.length > 2) item.setAttribute('open', '');
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

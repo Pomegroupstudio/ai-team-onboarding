@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A clean, minimalist Pomodoro Focus Timer to help you work in focused intervals." />
+  <title>Pomodoro Focus Timer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1 class="app-title">Pomodoro</h1>
+      <p class="app-subtitle">Focus Timer</p>
+    </header>
+
+    <!-- Mode toggle -->
+    <div class="mode-switch" role="tablist" aria-label="Timer mode">
+      <button
+        class="mode-btn is-active"
+        id="mode-work"
+        type="button"
+        role="tab"
+        aria-selected="true"
+        data-mode="work"
+      >
+        Work
+      </button>
+      <button
+        class="mode-btn"
+        id="mode-break"
+        type="button"
+        role="tab"
+        aria-selected="false"
+        data-mode="break"
+      >
+        Break
+      </button>
+    </div>
+
+    <!-- Timer display -->
+    <section class="timer-card" aria-live="polite">
+      <div class="timer-ring">
+        <svg class="ring" viewBox="0 0 260 260" aria-hidden="true">
+          <circle class="ring-track" cx="130" cy="130" r="120"></circle>
+          <circle class="ring-progress" id="ring-progress" cx="130" cy="130" r="120"></circle>
+        </svg>
+        <div class="timer-content">
+          <span class="timer-label" id="timer-label">Work</span>
+          <span class="timer-display" id="timer-display">25:00</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button class="btn btn-primary" id="btn-start" type="button">
+        <span class="btn-icon" id="btn-icon">&#9654;</span>
+        <span id="btn-text">Start</span>
+      </button>
+      <button class="btn btn-secondary" id="btn-reset" type="button">
+        <span class="btn-icon">&#8635;</span>
+        <span>Reset</span>
+      </button>
+    </div>
+
+    <!-- Session counter -->
+    <footer class="session-footer">
+      <span class="session-label">Completed sessions</span>
+      <div class="session-dots" id="session-dots" aria-label="Completed sessions"></div>
+      <span class="session-count" id="session-count">0</span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
