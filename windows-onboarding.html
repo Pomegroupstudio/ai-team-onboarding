@@ -777,6 +777,23 @@
 
     <div class="faq-group" id="faqGroup">
 
+      <details class="faq-item" name="faq" open>
+        <summary>
+          <span>Stuck at "0%" and "API Request..." spinning indefinitely</span>
+          <span class="faq-chevron">▼</span>
+        </summary>
+        <div class="faq-body">
+          <p><strong>Cause:</strong> VS Code cannot reach the DeepSeek API (<code>api.deepseek.com</code>). This almost always happens due to network filtering/firewalls, a VPN running without TUN mode, or opening a massive directory (like an entire drive or User folder) instead of an empty project folder.</p>
+          <p><strong>Step-by-Step Fix:</strong></p>
+          <ol>
+            <li><strong>Enable "TUN Mode" in your VPN (Most Common):</strong> Standard VPN clients (v2rayN, Nekoray, Hiddify, Clash) only proxy web browsers by default. You <em>must</em> enable <strong>TUN Mode (کل سیستم)</strong> so background applications like VS Code route through the proxy.</li>
+            <li><strong>Or configure VS Code's proxy directly:</strong> In VS Code, press <kbd>Ctrl</kbd> + <kbd>,</kbd> $\rightarrow$ search <code>proxy</code> $\rightarrow$ under <strong>Http: Proxy</strong>, enter your local VPN proxy address (e.g. <code>http://127.0.0.1:10809</code>, <code>http://127.0.0.1:2081</code>, or <code>http://127.0.0.1:7890</code> depending on your VPN client).</li>
+            <li><strong>Confirm you opened a clean, EMPTY folder:</strong> If you opened your entire <code>Desktop</code> or <code>C:\Users\YourName</code>, Roo Code hangs indexing thousands of background files. Always create a new empty folder (e.g. <code>C:\ai-test</code>) and open that specific folder (<kbd>File</kbd> $\rightarrow$ <kbd>Open Folder...</kbd>).</li>
+            <li><strong>Cancel the stuck request:</strong> Click the <strong>blue square Stop button (■)</strong> at the bottom-right of the Roo Code chat box, then click the <strong><code>+</code> (New Task)</strong> button at the top to start fresh.</li>
+          </ol>
+        </div>
+      </details>
+
       <details class="faq-item" name="faq">
         <summary>
           <span>Error: "Could not find ripgrep binary" or agent freezes on start</span>
