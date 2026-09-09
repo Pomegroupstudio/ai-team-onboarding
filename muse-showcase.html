@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meta Muse Interactive Showcase | Autonomous AI Developer Agent</title>
+  <meta name="description" content="Try Meta Muse (released Sept 2026): Interactive terminal simulator, developer ROI calculator, and viral productivity tools." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --bg-card: #111827;
+      --bg-card-hover: #172033;
+      --bg-subtle: #1e293b;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(59, 130, 246, 0.35);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.25);
+      --accent-teal: #4ecdc4;
+      --accent-rose: #ff6b6b;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --shadow-card: 0 15px 35px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background: radial-gradient(1200px 900px at 50% -10%, #17233f 0%, var(--bg) 65%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .top-nav {
+      border-bottom: 1px solid var(--border);
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-weight: 800;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-brand span {
+      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover { color: #fff; }
+    .nav-link.active { color: var(--primary); }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 1.5rem 0 3.5rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary-glow);
+      border: 1px solid var(--border-accent);
+      color: #93c5fd;
+      padding: 0.35rem 1.1rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #4ecdc4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 2.2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.6rem;
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: #fff;
+      box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+    }
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      border-color: var(--border);
+      color: var(--text);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-accent);
+    }
+
+    /* Interactive Simulator Card */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 1.2rem;
+      margin-top: 3.5rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 2.5rem;
+    }
+
+    /* Terminal Simulator */
+    .terminal-wrap {
+      background: #060911;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .terminal-bar {
+      background: #0d121f;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .terminal-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    .terminal-body {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+      padding: 20px;
+      min-height: 250px;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      line-height: 1.7;
+    }
+
+    .term-prompt { color: #60a5fa; font-weight: 700; }
+    .term-success { color: #34d399; }
+    .term-dim { color: #64748b; }
+    .term-bold { color: #f8fafc; font-weight: 700; }
+    .term-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 15px;
+      background: #60a5fa;
+      vertical-align: middle;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+
+    .task-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .task-chip {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .task-chip:hover {
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .task-chip.is-active {
+      background: var(--primary-glow);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    /* ROI Calculator */
+    .calculator-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .calculator-grid { grid-template-columns: 1fr; }
+    }
+
+    .calc-control {
+      margin-bottom: 1.5rem;
+    }
+
+    .calc-control label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .calc-control label span.val {
+      color: #60a5fa;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: #3b82f6;
+      height: 6px;
+      background: var(--bg-subtle);
+      border-radius: 4px;
+      outline: none;
+    }
+
+    .calc-results {
+      background: radial-gradient(100% 100% at 50% 0%, #1a2336 0%, #0d121d 100%);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .metric-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 10px;
+    }
+
+    .metric-val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent-teal);
+      line-height: 1.1;
+    }
+
+    .metric-lbl {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+
+    .viral-share-box {
+      margin-top: 14px;
+    }
+
+    .btn-share-x-calc {
+      background: #000;
+      color: #fff;
+      border: 1px solid #333;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-share-x-calc:hover {
+      background: #111;
+      border-color: #666;
+      transform: translateY(-1px);
+    }
+
+    /* Cheat Sheet Code Blocks */
+    .code-box {
+      background: #060911;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #93c5fd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .btn-copy-code {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-copy-code:hover {
+      color: #fff;
+      border-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="top-nav">
+    <a href="muse-showcase.html" class="nav-brand">
+      <span>⚡ Meta Muse</span> Showcase
+    </a>
+    <div class="nav-links">
+      <a href="pomodoro.html" class="nav-link">🧘 Focus Timer</a>
+      <a href="index.html" class="nav-link">📖 Onboarding Guide</a>
+      <a href="https://dev.meta.ai" target="_blank" rel="noopener" class="nav-link">Official Meta Docs ↗</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="pill">🚀 Released September 8, 2026</div>
+      <h1>Autonomous Coding with <br><span class="gradient-text">Meta Muse (Muse Spark)</span></h1>
+      <p>
+        Move beyond chat autocomplete. Meta Muse plans, refactors across entire repositories, and executes with isolated Secure VMs and Sentinel safety audits.
+      </p>
+      <div class="hero-actions">
+        <a href="#simulator" class="btn btn-primary">🎮 Try Interactive Simulator</a>
+        <a href="#calculator" class="btn btn-secondary">📊 Calculate Team Savings</a>
+        <a href="pomodoro.html" class="btn btn-secondary">🧘 Launch Pomodoro App</a>
+      </div>
+    </header>
+
+    <!-- Interactive Terminal Simulator Section -->
+    <section id="simulator">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Interactive Terminal Simulator</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Select a task to simulate how <code>muse exec</code> plans, executes, and validates changes.</p>
+        </div>
+      </div>
+
+      <div class="task-selector">
+        <button class="task-chip is-active" data-task="growth" type="button">🚀 Viral Growth Feature</button>
+        <button class="task-chip" data-task="refactor" type="button">⚡ Zero-Drift Audio Engine</button>
+        <button class="task-chip" data-task="security" type="button">🛡️ Sentinel Security Audit</button>
+      </div>
+
+      <div class="terminal-wrap">
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="terminal-title">bash — muse 1.0.3 (Muse Spark 1.3)</span>
+          <span style="font-size: 0.75rem; color: #4ecdc4;">● LIVE DEMO</span>
+        </div>
+        <div class="terminal-body" id="term-output">
+<span class="term-prompt">$ ~/.local/bin/muse exec "Analyze repository and add viral streak sharing"</span>
+
+<span class="term-dim">[1/4]</span> Inspecting repository workspace: serene-davinci...
+<span class="term-dim">[2/4]</span> Analyzing pomodoro.html & script.js architecture...
+<span class="term-dim">[3/4]</span> Synthesizing viral growth mechanism:
+      - Embedded glassmorphic streak modal
+      - Dynamic X / LinkedIn / WhatsApp referral intents
+      - Web Audio API ambient focus sound generator
+<span class="term-dim">[4/4]</span> Applying edits & executing verification checks...
+<span class="term-success">✔ All changes applied without regressions.</span>
+<span class="term-bold">🎉 Success: Serene Focus viral loop is live!</span><span class="term-cursor"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Developer ROI Calculator -->
+    <section id="calculator">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Developer Velocity & ROI Calculator</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Estimate annual savings when delegating boilerplate & verification to Meta Muse.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="calculator-grid">
+          <div class="calc-inputs">
+            <div class="calc-control">
+              <label>Team Size (Developers): <span class="val" id="lbl-team">5 devs</span></label>
+              <input type="range" id="range-team" min="1" max="50" value="5">
+            </div>
+            <div class="calc-control">
+              <label>Boilerplate / Debugging per Dev (Hours/Week): <span class="val" id="lbl-hours">10 hrs</span></label>
+              <input type="range" id="range-hours" min="2" max="25" value="10">
+            </div>
+            <div class="calc-control">
+              <label>Average Developer Hourly Rate ($): <span class="val" id="lbl-rate">$85 / hr</span></label>
+              <input type="range" id="range-rate" min="30" max="200" value="85" step="5">
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-dim);">
+              Based on an estimated 40% reduction in boilerplate and manual repetitive verification via Muse Spark 1.3.
+            </p>
+          </div>
+
+          <div class="calc-results">
+            <div>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #93c5fd; text-transform: uppercase; letter-spacing: 0.05em;">Projected Impact</span>
+              <div class="metric-row">
+                <div class="metric-box">
+                  <div class="metric-val" id="res-hours">80</div>
+                  <div class="metric-lbl">Hours Saved / Mo</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-val" id="res-dollars">$81.6k</div>
+                  <div class="metric-lbl">Annual Savings</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="viral-share-box">
+              <a class="btn-share-x-calc" id="btn-share-calc" href="#" target="_blank" rel="noopener">
+                <span>Post ROI to 𝕏</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quickstart Cheat Sheet -->
+    <section>
+      <h2 class="section-title" style="margin-bottom: 1.2rem;">Quickstart Cheat Sheet</h2>
+      <div class="card">
+        <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.92rem;">
+          Run Meta Muse on your Mac or Linux terminal in seconds:
+        </p>
+
+        <div class="code-box">
+          <code>curl -fsSL https://dev.meta.ai/install.sh | bash</code>
+          <button class="btn-copy-code" onclick="copyCode(this, 'curl -fsSL https://dev.meta.ai/install.sh | bash')">Copy</button>
+        </div>
+
+        <div class="code-box">
+          <code>muse login</code>
+          <button class="btn-copy-code" onclick="copyCode(this, 'muse login')">Copy</button>
+        </div>
+
+        <div class="code-box">
+          <code>./run_muse_job.sh</code>
+          <button class="btn-copy-code" onclick="copyCode(this, './run_muse_job.sh')">Copy</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // --- Interactive Terminal Simulator ---------------------------------------
+    const taskData = {
+      growth: [
+        '$ ~/.local/bin/muse exec "Analyze repository and add viral streak sharing"',
+        '',
+        '[1/4] Inspecting repository workspace: serene-davinci...',
+        '[2/4] Analyzing pomodoro.html & script.js architecture...',
+        '[3/4] Synthesizing viral growth mechanism:',
+        '      - Embedded glassmorphic streak modal',
+        '      - Dynamic X / LinkedIn / WhatsApp referral intents',
+        '      - Web Audio API ambient focus sound generator',
+        '[4/4] Applying edits & executing verification checks...',
+        '✔ All changes applied without regressions.',
+        '🎉 Success: Serene Focus viral loop is live!'
+      ],
+      refactor: [
+        '$ ~/.local/bin/muse exec "Refactor timer engine to drift-free Web Audio clock"',
+        '',
+        '[1/4] Scanning script.js audio context & setInterval anchors...',
+        '[2/4] Isolating audio oscillator routing to minimize garbage collection...',
+        '[3/4] Generating warm pink noise filter with Web Audio API...',
+        '[4/4] Verifying timer precision across background tabs...',
+        '✔ Performance check: 0.00ms audio latency, 0 dropped frames.',
+        '🚀 Timer engine upgraded to drift-free audio clock!'
+      ],
+      security: [
+        '$ ~/.local/bin/muse exec "Run Sentinel safety verification & export trace"',
+        '',
+        '[1/4] Initializing Sentinel policy engine on Secure VM...',
+        '[2/4] Auditing outbound network policies & permissions...',
+        '[3/4] Verifying sandbox isolation for git worktrees...',
+        '[4/4] Generating cryptographically verifiable session trace...',
+        '✔ Zero policy violations detected.',
+        '🛡️ Security audit: PASS (Sentinel Level 3 Compliant)'
+      ]
+    };
+
+    const termOutput = document.getElementById("term-output");
+    const taskChips = document.querySelectorAll(".task-chip");
+    let currentTimeout = null;
+
+    function playTerminalSimulation(taskKey) {
+      if (currentTimeout) clearTimeout(currentTimeout);
+      const lines = taskData[taskKey] || taskData.growth;
+      termOutput.innerHTML = "";
+      
+      let lineIndex = 0;
+      function nextLine() {
+        if (lineIndex < lines.length) {
+          const line = lines[lineIndex];
+          let formatted = line;
+          if (line.startsWith("$")) formatted = `<span class="term-prompt">${line}</span>`;
+          else if (line.startsWith("✔")) formatted = `<span class="term-success">${line}</span>`;
+          else if (line.startsWith("🎉") || line.startsWith("🚀") || line.startsWith("🛡️")) formatted = `<span class="term-bold">${line}</span>`;
+          else if (line.startsWith("[")) formatted = `<span class="term-dim">${line}</span>`;
+
+          termOutput.innerHTML += formatted + "\n";
+          lineIndex++;
+          currentTimeout = setTimeout(nextLine, 180);
+        } else {
+          termOutput.innerHTML += '<span class="term-cursor"></span>';
+        }
+      }
+      nextLine();
+    }
+
+    taskChips.forEach(chip => {
+      chip.addEventListener("click", () => {
+        taskChips.forEach(c => c.classList.remove("is-active"));
+        chip.classList.add("is-active");
+        playTerminalSimulation(chip.dataset.task);
+      });
+    });
+
+    // --- ROI Calculator -------------------------------------------------------
+    const rTeam = document.getElementById("range-team");
+    const rHours = document.getElementById("range-hours");
+    const rRate = document.getElementById("range-rate");
+
+    const lblTeam = document.getElementById("lbl-team");
+    const lblHours = document.getElementById("lbl-hours");
+    const lblRate = document.getElementById("lbl-rate");
+
+    const resHours = document.getElementById("res-hours");
+    const resDollars = document.getElementById("res-dollars");
+    const btnShareCalc = document.getElementById("btn-share-calc");
+
+    function updateCalc() {
+      const team = parseInt(rTeam.value, 10);
+      const hours = parseInt(rHours.value, 10);
+      const rate = parseInt(rRate.value, 10);
+
+      lblTeam.textContent = `${team} dev${team > 1 ? "s" : ""}`;
+      lblHours.textContent = `${hours} hrs / week`;
+      lblRate.textContent = `$${rate} / hr`;
+
+      // 40% efficiency gain on boilerplate/debugging
+      const savedHoursPerDevWeek = hours * 0.40;
+      const totalSavedMonthlyHours = Math.round(savedHoursPerDevWeek * team * 4.33);
+      const annualSavings = Math.round(totalSavedMonthlyHours * rate * 12);
+
+      resHours.textContent = totalSavedMonthlyHours.toLocaleString();
+      resDollars.textContent = annualSavings >= 1000000 
+        ? `$${(annualSavings / 1000000).toFixed(1)}M` 
+        : `$${Math.round(annualSavings / 1000)}k`;
+
+      const shareText = `Our dev team of ${team} can save ~${totalSavedMonthlyHours} hours/month ($${(annualSavings/1000).toFixed(0)}k/year) with Meta Muse agentic workflows! 🚀⚡\n\nCalculate your team's savings:`;
+      const url = window.location.href.split("#")[0];
+      btnShareCalc.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}&hashtags=MetaMuse,AI,DeveloperProductivity`;
+    }
+
+    rTeam.addEventListener("input", updateCalc);
+    rHours.addEventListener("input", updateCalc);
+    rRate.addEventListener("input", updateCalc);
+    updateCalc();
+
+    // --- Copy Helper ----------------------------------------------------------
+    function copyCode(btn, text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = "Copied!";
+        btn.style.borderColor = "#34d399";
+        btn.style.color = "#34d399";
+        setTimeout(() => {
+          btn.textContent = orig;
+          btn.style.borderColor = "";
+          btn.style.color = "";
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

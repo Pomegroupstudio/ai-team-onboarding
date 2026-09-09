@@ -618,6 +618,72 @@
       </div>
     </section>
 
+
+    <!-- 1-Minute Automated Fast Track (Recommended) -->
+    <div class="card" style="border: 2px solid var(--primary); background: linear-gradient(180deg, rgba(59, 130, 246, 0.08) 0%, rgba(17, 24, 39, 0.95) 100%); margin-bottom: 2.5rem; box-shadow: 0 12px 40px -10px rgba(59, 130, 246, 0.25);">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <span style="font-size: 1.6rem;">⚡</span>
+          <h2 style="font-size: 1.35rem; font-weight: 800; margin: 0; color: #fff;">1-Minute Fast Track: Automated Setup</h2>
+        </div>
+        <span style="background: var(--success); color: #fff; padding: 0.35rem 0.75rem; border-radius: 999px; font-weight: 700; font-size: 0.8rem;">Recommended for New Teammates</span>
+      </div>
+
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">
+        Skip manual configuration. Run our official 1-line setup script to test your VPN to DeepSeek, configure the Ripgrep engine, install Roo Code, and launch a ready-to-code workspace automatically in under 60 seconds.
+      </p>
+
+      <!-- Windows Fast Track -->
+      <div style="margin-bottom: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+          <span style="font-weight: 700; font-size: 0.95rem; color: #60a5fa;">🪟 Windows Setup (Run in PowerShell)</span>
+          <span style="font-size: 0.8rem; color: var(--text-dim);"><kbd>Win + R</kbd> &rarr; <code>powershell</code> &rarr; Paste</span>
+        </div>
+        <div class="code-block" style="margin: 0;">
+          <div class="code-header">
+            <span>Windows 1-Click Command</span>
+            <button class="btn-copy" onclick="copyText(this, &quot;irm https://pomegroupstudio.github.io/ai-team-onboarding/scripts/setup-windows.ps1 | iex&quot;)">📋 Copy Command</button>
+          </div>
+          <div class="code-content" style="color: #38bdf8; font-size: 0.85rem;">irm https://pomegroupstudio.github.io/ai-team-onboarding/scripts/setup-windows.ps1 | iex</div>
+        </div>
+      </div>
+
+      <!-- macOS Fast Track -->
+      <div style="margin-bottom: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+          <span style="font-weight: 700; font-size: 0.95rem; color: #a78bfa;">🍎 macOS Setup (Run in Terminal)</span>
+          <span style="font-size: 0.8rem; color: var(--text-dim);"><kbd>Cmd + Space</kbd> &rarr; <code>Terminal</code> &rarr; Paste</span>
+        </div>
+        <div class="code-block" style="margin: 0;">
+          <div class="code-header">
+            <span>macOS 1-Click Command</span>
+            <button class="btn-copy" onclick="copyText(this, &quot;curl -fsSL https://pomegroupstudio.github.io/ai-team-onboarding/scripts/setup-mac.sh | bash&quot;)">📋 Copy Command</button>
+          </div>
+          <div class="code-content" style="color: #c084fc; font-size: 0.85rem;">curl -fsSL https://pomegroupstudio.github.io/ai-team-onboarding/scripts/setup-mac.sh | bash</div>
+        </div>
+      </div>
+
+      <!-- Diagnostic Doctor -->
+      <div style="margin-bottom: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+          <span style="font-weight: 700; font-size: 0.95rem; color: #34d399;">🩺 Self-Service Doctor (If Roo Code ever freezes)</span>
+          <span style="font-size: 0.8rem; color: var(--text-dim);">Instant diagnosis of VPN, Ripgrep & Extensions</span>
+        </div>
+        <div class="code-block" style="margin: 0;">
+          <div class="code-header">
+            <span>Windows Doctor Command</span>
+            <button class="btn-copy" onclick="copyText(this, &quot;irm https://pomegroupstudio.github.io/ai-team-onboarding/scripts/doctor-windows.ps1 | iex&quot;)">📋 Copy Command</button>
+          </div>
+          <div class="code-content" style="color: #6ee7b7; font-size: 0.85rem;">irm https://pomegroupstudio.github.io/ai-team-onboarding/scripts/doctor-windows.ps1 | iex</div>
+        </div>
+      </div>
+
+      <!-- Persian Instructions Box -->
+      <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-sm); padding: 0.85rem 1.1rem; font-size: 0.9rem; color: #a7f3d0; line-height: 1.6; direction: rtl; text-align: right;">
+        💡 <strong>راهنمای سریع فارسی:</strong> برای اعضای جدید تیم، کافی است کلید‌های <kbd>Windows + R</kbd> را بزنید، بنویسید <code>powershell</code> و اینتر بزنید. سپس دستور ویندوز بالا را پیست کنید. تمام مراحل بررسی فیلترشکن، نصب ripgrep (جهت جلوگیری از فریز روی 0%)، افزونه Roo Code و ساخت پوشه پروژه در کمتر از ۱ دقیقه خودکار انجام می‌شود.
+      </div>
+    </div>
+
     <!-- Phase 1: Prerequisites -->
     <h2 class="section-title">
       <span class="step-badge">1</span> Phase 1: Software Installation
@@ -829,11 +895,14 @@
           </ol>
           <div class="code-block" style="margin: 0.75rem 0;">
             <div class="code-header">
-              <span>PowerShell Ripgrep Fix</span>
-              <button class="btn-copy" onclick="copyText(this, '$paths = @(\&quot;$env:LOCALAPPDATA\\Programs\\Microsoft VS Code\&quot;, \&quot;C:\\Program Files\\Microsoft VS Code\&quot;); foreach ($p in $paths) { if (Test-Path $p) { $rg = (Get-ChildItem -Path $p -Filter \&quot;rg.exe\&quot; -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1).FullName; if ($rg) { $target = \&quot;$p\\resources\\app\\node_modules.asar.unpacked\\@vscode\\ripgrep\\bin\&quot;; New-Item -ItemType Directory -Path $target -Force | Out-Null; Copy-Item $rg \&quot;$target\\rg.exe\&quot; -Force; Write-Host \&quot;Ripgrep fixed successfully!\&quot; -ForegroundColor Green } } }')">📋 Copy Command</button>
+              <span>1-Click Automated Repair Command</span>
+              <button class="btn-copy" onclick="copyText(this, 'irm https://pomegroupstudio.github.io/ai-team-onboarding/scripts/setup-windows.ps1 | iex')">📋 Copy Command</button>
             </div>
-            <div class="code-content" style="font-size:0.8rem;">$paths = @("$env:LOCALAPPDATA\Programs\Microsoft VS Code", "C:\Program Files\Microsoft VS Code"); foreach ($p in $paths) { if (Test-Path $p) { $rg = (Get-ChildItem -Path $p -Filter "rg.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1).FullName; if ($rg) { $target = "$p\resources\app\node_modules.asar.unpacked\@vscode\ripgrep\bin"; New-Item -ItemType Directory -Path $target -Force | Out-Null; Copy-Item $rg "$target\rg.exe" -Force; Write-Host "Ripgrep fixed successfully!" -ForegroundColor Green } } }</div>
+            <div class="code-content" style="font-size:0.85rem; color: #38bdf8;">irm https://pomegroupstudio.github.io/ai-team-onboarding/scripts/setup-windows.ps1 | iex</div>
           </div>
+          <p style="font-size: 0.88rem; color: var(--text-dim); margin: 0.5rem 0 0.75rem;">
+            This automated script detects all VS Code installations, copies <code>rg.exe</code> into all internal unpacked directories, adds it to your permanent User PATH, and verifies execution.
+          </p>
           <ol start="4">
             <li>Reopen VS Code, open your project folder, click <strong><code>+</code> (New Task)</strong> in Roo Code, and run your prompt!</li>
           </ol>

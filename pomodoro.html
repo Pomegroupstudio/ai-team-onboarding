@@ -62,15 +62,76 @@
         <span class="btn-icon">&#8635;</span>
         <span>Reset</span>
       </button>
+      <button class="btn btn-secondary" id="btn-sound" type="button" title="Toggle Ambient Flow Sound">
+        <span class="btn-icon" id="sound-icon">🔇</span>
+        <span id="sound-text">Sound</span>
+      </button>
     </div>
 
-    <!-- Session counter -->
+    <!-- Session counter & Viral Share -->
     <footer class="session-footer">
       <span class="session-label">Completed sessions</span>
       <div class="session-dots" id="session-dots" aria-label="Completed sessions"></div>
       <span class="session-count" id="session-count">0</span>
+      <button class="btn-share-streak" id="btn-open-share" type="button">
+        <span>🚀 Share Focus Streak</span>
+      </button>
+      <div class="nav-links" style="margin-top: 14px; font-size: 0.82rem;">
+        <a href="muse-showcase.html" style="color: var(--accent-break); text-decoration: none; margin-right: 12px;">⚡ Meta Muse Showcase</a>
+        <a href="index.html" style="color: var(--text-secondary); text-decoration: none;">📖 Onboarding Guide</a>
+      </div>
     </footer>
   </main>
+
+  <!-- Viral Share Modal -->
+  <div class="modal-backdrop" id="share-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close" id="btn-close-modal" type="button" aria-label="Close">&times;</button>
+      <div class="modal-header">
+        <span class="badge-pill">🔥 Session Complete!</span>
+        <h2 class="modal-title">Share Your Focus Streak</h2>
+        <p class="modal-subtitle">Inspire your network and build deep work momentum.</p>
+      </div>
+
+      <!-- Shareable Graphic Card Preview -->
+      <div class="streak-card" id="streak-preview-card">
+        <div class="streak-card-top">
+          <span class="streak-logo">🧘 Serene Focus</span>
+          <span class="streak-badge-tag" id="streak-tag">Level 1 Flow</span>
+        </div>
+        <div class="streak-metric-wrap">
+          <div class="streak-metric">
+            <span class="streak-val" id="modal-session-count">1</span>
+            <span class="streak-lbl">Sessions</span>
+          </div>
+          <div class="streak-divider"></div>
+          <div class="streak-metric">
+            <span class="streak-val" id="modal-focus-minutes">25</span>
+            <span class="streak-lbl">Focus Mins</span>
+          </div>
+        </div>
+        <div class="streak-quote" id="streak-quote">"Deep focus is the superpower of the 21st century."</div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="share-actions">
+        <a class="btn-share-social btn-x" id="btn-share-x" href="#" target="_blank" rel="noopener">
+          <span>Post to 𝕏</span>
+        </a>
+        <a class="btn-share-social btn-linkedin" id="btn-share-linkedin" href="#" target="_blank" rel="noopener">
+          <span>Share on LinkedIn</span>
+        </a>
+        <a class="btn-share-social btn-whatsapp" id="btn-share-whatsapp" href="#" target="_blank" rel="noopener">
+          <span>WhatsApp</span>
+        </a>
+        <button class="btn-share-social btn-copy" id="btn-copy-streak" type="button">
+          <span id="copy-btn-label">📋 Copy Badge & Link</span>
+        </button>
+      </div>
+
+      <div class="copy-toast" id="copy-toast" aria-live="polite">Copied to clipboard! Share it with your team.</div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
