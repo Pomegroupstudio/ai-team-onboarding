@@ -558,6 +558,12 @@
         <span>Windows AI Onboarding</span>
       </div>
       <div class="nav-controls">
+        <a href="muse-showcase.html" style="color: var(--primary); text-decoration: none; font-size: 0.85rem; font-weight: 700; margin-right: 12px; display: inline-flex; align-items: center; gap: 4px;">
+          ⚡ <span>Meta Muse Showcase</span>
+        </a>
+        <a href="pomodoro.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 600; margin-right: 12px;">
+          🧘 <span>Focus Timer</span>
+        </a>
         <button class="btn-print" onclick="window.print()" title="Print or Save as PDF">
           🖨️ <span>PDF / Print</span>
         </button>
@@ -570,6 +576,20 @@
 
   <main class="container">
     
+    <!-- Meta Muse Release Banner -->
+    <aside style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%); border: 1px solid var(--border-accent); border-radius: var(--radius-md); padding: 1rem 1.25rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span style="font-size: 1.5rem;">⚡</span>
+        <div>
+          <strong style="color: #fff; font-size: 0.95rem;">Meta Muse Launched (September 2026)!</strong>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 2px;">Experience Meta's new autonomous coding CLI with our interactive terminal simulator & ROI calculator.</p>
+        </div>
+      </div>
+      <a href="muse-showcase.html" class="btn" style="padding: 0.5rem 1rem; font-size: 0.85rem; background: var(--primary); color: #fff; text-decoration: none; border-radius: var(--radius-sm); font-weight: 700;">
+        Explore Muse ↗
+      </a>
+    </aside>
+
     <!-- Hero Header -->
     <section class="hero">
       <div class="hero-pill">⚡ 10-Minute Team Setup</div>
@@ -796,17 +816,26 @@
 
       <details class="faq-item" name="faq">
         <summary>
-          <span>Error: "Could not find ripgrep binary" or agent freezes on start</span>
+          <span>Error: "Could not find ripgrep binary" (Agent freezes at 0%)</span>
           <span class="faq-chevron">▼</span>
         </summary>
         <div class="faq-body">
-          <p><strong>Cause:</strong> VS Code recently relocated its internal search binary, or the terminal environment wasn't reloaded after installation.</p>
-          <p><strong>Fix:</strong></p>
+          <p><strong>Cause:</strong> In recent versions of VS Code, the internal <code>ripgrep</code> (<code>rg.exe</code>) binary was moved to a new subfolder, causing Roo Code to fail finding it and freeze silently at 0%.</p>
+          <p><strong>Instant 1-Click Fix for Windows:</strong></p>
           <ol>
-            <li>Close Visual Studio Code completely.</li>
-            <li>Reopen VS Code from your Windows Start Menu.</li>
-            <li>Open your project folder (<kbd>File</kbd> $\rightarrow$ <kbd>Open Folder...</kbd>).</li>
-            <li>Click the <strong><code>+</code> (New Task)</strong> button at the top of the Roo Code panel to start clean.</li>
+            <li>Close VS Code completely.</li>
+            <li>Press <kbd>Win</kbd> + <kbd>R</kbd>, type <code>powershell</code>, and press <kbd>Enter</kbd>.</li>
+            <li>Paste this command into PowerShell and hit <kbd>Enter</kbd>:</li>
+          </ol>
+          <div class="code-block" style="margin: 0.75rem 0;">
+            <div class="code-header">
+              <span>PowerShell Ripgrep Fix</span>
+              <button class="btn-copy" onclick="copyText(this, '$paths = @(\&quot;$env:LOCALAPPDATA\\Programs\\Microsoft VS Code\&quot;, \&quot;C:\\Program Files\\Microsoft VS Code\&quot;); foreach ($p in $paths) { if (Test-Path $p) { $rg = (Get-ChildItem -Path $p -Filter \&quot;rg.exe\&quot; -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1).FullName; if ($rg) { $target = \&quot;$p\\resources\\app\\node_modules.asar.unpacked\\@vscode\\ripgrep\\bin\&quot;; New-Item -ItemType Directory -Path $target -Force | Out-Null; Copy-Item $rg \&quot;$target\\rg.exe\&quot; -Force; Write-Host \&quot;Ripgrep fixed successfully!\&quot; -ForegroundColor Green } } }')">📋 Copy Command</button>
+            </div>
+            <div class="code-content" style="font-size:0.8rem;">$paths = @("$env:LOCALAPPDATA\Programs\Microsoft VS Code", "C:\Program Files\Microsoft VS Code"); foreach ($p in $paths) { if (Test-Path $p) { $rg = (Get-ChildItem -Path $p -Filter "rg.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1).FullName; if ($rg) { $target = "$p\resources\app\node_modules.asar.unpacked\@vscode\ripgrep\bin"; New-Item -ItemType Directory -Path $target -Force | Out-Null; Copy-Item $rg "$target\rg.exe" -Force; Write-Host "Ripgrep fixed successfully!" -ForegroundColor Green } } }</div>
+          </div>
+          <ol start="4">
+            <li>Reopen VS Code, open your project folder, click <strong><code>+</code> (New Task)</strong> in Roo Code, and run your prompt!</li>
           </ol>
         </div>
       </details>
