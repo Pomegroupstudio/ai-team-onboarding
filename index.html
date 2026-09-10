@@ -637,14 +637,14 @@
       <div style="margin-bottom: 1.25rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
           <span style="font-weight: 700; font-size: 0.95rem; color: #60a5fa;">🪟 Windows Setup (Run in PowerShell)</span>
-          <span style="font-size: 0.8rem; color: var(--text-dim);"><kbd>Win + R</kbd> &rarr; <code>powershell</code> &rarr; Paste</span>
+          <span style="font-size: 0.8rem; color: var(--text-dim);"><kbd>Win + R</kbd> &rarr; Paste directly &rarr; <kbd>Enter</kbd></span>
         </div>
         <div class="code-block" style="margin: 0;">
           <div class="code-header">
             <span>Windows 1-Click Command</span>
-            <button class="btn-copy" onclick="copyText(this, &quot;irm https://raw.githubusercontent.com/Pomegroupstudio/ai-team-onboarding/main/scripts/setup-windows.ps1 | iex&quot;)">📋 Copy Command</button>
+            <button class="btn-copy" onclick="copyText(this, &quot;powershell -ExecutionPolicy Bypass -Command \&quot;irm https://raw.githubusercontent.com/Pomegroupstudio/ai-team-onboarding/main/scripts/setup-windows.ps1 | iex\&quot;&quot;)">📋 Copy Command</button>
           </div>
-          <div class="code-content" style="color: #38bdf8; font-size: 0.85rem;">irm https://raw.githubusercontent.com/Pomegroupstudio/ai-team-onboarding/main/scripts/setup-windows.ps1 | iex</div>
+          <div class="code-content" style="color: #38bdf8; font-size: 0.82rem;">powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/Pomegroupstudio/ai-team-onboarding/main/scripts/setup-windows.ps1 | iex"</div>
         </div>
       </div>
 
@@ -672,15 +672,15 @@
         <div class="code-block" style="margin: 0;">
           <div class="code-header">
             <span>Windows Doctor Command</span>
-            <button class="btn-copy" onclick="copyText(this, &quot;irm https://raw.githubusercontent.com/Pomegroupstudio/ai-team-onboarding/main/scripts/doctor-windows.ps1 | iex&quot;)">📋 Copy Command</button>
+            <button class="btn-copy" onclick="copyText(this, &quot;powershell -ExecutionPolicy Bypass -Command \&quot;irm https://raw.githubusercontent.com/Pomegroupstudio/ai-team-onboarding/main/scripts/doctor-windows.ps1 | iex\&quot;&quot;)">📋 Copy Command</button>
           </div>
-          <div class="code-content" style="color: #6ee7b7; font-size: 0.85rem;">irm https://raw.githubusercontent.com/Pomegroupstudio/ai-team-onboarding/main/scripts/doctor-windows.ps1 | iex</div>
+          <div class="code-content" style="color: #6ee7b7; font-size: 0.82rem;">powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/Pomegroupstudio/ai-team-onboarding/main/scripts/doctor-windows.ps1 | iex"</div>
         </div>
       </div>
 
       <!-- Persian Instructions Box -->
       <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-sm); padding: 0.85rem 1.1rem; font-size: 0.9rem; color: #a7f3d0; line-height: 1.6; direction: rtl; text-align: right;">
-        💡 <strong>راهنمای سریع فارسی:</strong> برای اعضای جدید تیم، کافی است کلید‌های <kbd>Windows + R</kbd> را بزنید، بنویسید <code>powershell</code> و اینتر بزنید. سپس دستور ویندوز بالا را پیست کنید. تمام مراحل بررسی فیلترشکن، نصب ripgrep (جهت جلوگیری از فریز روی 0%)، افزونه Roo Code و ساخت پوشه پروژه در کمتر از ۱ دقیقه خودکار انجام می‌شود.
+        💡 <strong>راهنمای سریع فارسی:</strong> برای راه‌اندازی فوری هم‌تیمی‌های جدید، تنها کافی است کلید‌های <kbd>Windows + R</kbd> را بزنید و دستور بالا را مستقیماً داخل کادر Run پیست کنید و اینتر بزنید (دیگر حتی نیازی به تایپ کلمه powershell هم نیست!). تمام مراحل بررسی فیلترشکن، حل ریشه‌ای موتور جستجو و ساخت پوشه کاری خودکار انجام می‌شود.
       </div>
     </div>
 
@@ -896,9 +896,9 @@
           <div class="code-block" style="margin: 0.75rem 0;">
             <div class="code-header">
               <span>1-Click Automated Repair Command</span>
-              <button class="btn-copy" onclick="copyText(this, 'irm https://raw.githubusercontent.com/Pomegroupstudio/ai-team-onboarding/main/scripts/setup-windows.ps1 | iex')">📋 Copy Command</button>
+              <button class="btn-copy" onclick="copyText(this, 'powershell -ExecutionPolicy Bypass -Command \"irm https://raw.githubusercontent.com/Pomegroupstudio/ai-team-onboarding/main/scripts/setup-windows.ps1 | iex\"')">📋 Copy Command</button>
             </div>
-            <div class="code-content" style="font-size:0.85rem; color: #38bdf8;">irm https://raw.githubusercontent.com/Pomegroupstudio/ai-team-onboarding/main/scripts/setup-windows.ps1 | iex</div>
+            <div class="code-content" style="font-size:0.82rem; color: #38bdf8;">powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/Pomegroupstudio/ai-team-onboarding/main/scripts/setup-windows.ps1 | iex"</div>
           </div>
           <p style="font-size: 0.88rem; color: var(--text-dim); margin: 0.5rem 0 0.75rem;">
             This automated script detects all VS Code installations, copies <code>rg.exe</code> into all internal unpacked directories, adds it to your permanent User PATH, and verifies execution.
@@ -906,6 +906,27 @@
           <ol start="4">
             <li>Reopen VS Code, open your project folder, click <strong><code>+</code> (New Task)</strong> in Roo Code, and run your prompt!</li>
           </ol>
+        </div>
+      </details>
+
+      <details class="faq-item" name="faq">
+        <summary>
+          <span>Error: "Windows cannot find 'irm'. Make sure you typed the name correctly"</span>
+          <span class="faq-chevron">▼</span>
+        </summary>
+        <div class="faq-body">
+          <p><strong>Cause:</strong> You pasted a PowerShell command directly into the Windows <strong>Run</strong> dialog (<kbd>Win</kbd> + <kbd>R</kbd>). The Windows Run box only recognizes program executables (like <code>powershell.exe</code>), not internal PowerShell commands like <code>irm</code>.</p>
+          <p><strong>Instant Fix:</strong> Copy and paste this universal command directly into the <kbd>Win</kbd> + <kbd>R</kbd> box instead:</p>
+          <div class="code-block" style="margin: 0.75rem 0;">
+            <div class="code-header">
+              <span>Universal Run Dialog Command</span>
+              <button class="btn-copy" onclick="copyText(this, &quot;powershell -ExecutionPolicy Bypass -Command \&quot;irm https://raw.githubusercontent.com/Pomegroupstudio/ai-team-onboarding/main/scripts/setup-windows.ps1 | iex\&quot;&quot;)">📋 Copy Command</button>
+            </div>
+            <div class="code-content" style="font-size:0.82rem; color: #38bdf8;">powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/Pomegroupstudio/ai-team-onboarding/main/scripts/setup-windows.ps1 | iex"</div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-dim); margin-top: 0.25rem;">
+            By prefixing with <code>powershell -Command ...</code>, Windows launches PowerShell first, guaranteeing execution directly from the <kbd>Win</kbd> + <kbd>R</kbd> box without errors!
+          </p>
         </div>
       </details>
 
